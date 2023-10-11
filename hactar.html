@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Renderer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #editorContainer, #renderButton, #shareButton {
+            display: none;
+        }
+        #editorContainer {
+            width: 100%;
+            height: 400px;
+        }
+        #renderButton, #shareButton {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+        }
+        #renderButton:hover, #shareButton:hover {
+            background-color: #005f5f;
+        }
+    </style>
+</head>
+<body>
+
+<div id="editorContainer"></div>
+<button id="renderButton">Render HTML</button>
+<button id="shareButton">Share</button>
+
+<script>
+    var editor = ace.edit("editorContainer");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/html");
+
+    function renderHTML() {
+        const htmlCode = editor.getValue();
+        const encodedHtml = encodeURIComponent(htmlCode);
+        const newTabUrl = window.location.href.split('?')[0] + '?mode=render' + '&html=' + encodedHtml;
+        window.open(newTabUrl, '_blank');
+    }
+
+    function shareHTML() {
+        const htmlCode = editor.getValue();
+        const encodedHtml = encodeURIComponent(htmlCode);
+        const shareableUrl = window.location.href.split('?')[0] + '?mode=edit' + '&html=' + encodedHtml;
+        prompt("Copy this URL to share:", shareableUrl);
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const htmlParam = urlParams.get('html');
+    const modeParam = urlParams.get('mode');
+
+    if (htmlParam) {
+        const decodedHtml = decodeURIComponent(htmlParam);
+        if (modeParam === 'render') {
+            document.open();
+            document.write(decodedHtml);
+            document.close();
+        } else if (modeParam === 'edit') {
+            editor.setValue(decodedHtml);
+            document.getElementById('editorContainer').style.display = 'block';
+            document.getElementById('renderButton').style.display = 'block';
+            document.getElementById('shareButton').style.display = 'block';
+            document.getElementById('renderButton').addEventListener('click', renderHTML);
+            document.getElementById('shareButton').addEventListener('click', shareHTML);
+        }
+    } else {
+        document.getElementById('editorContainer').style.display = 'block';
+        document.getElementById('renderButton').style.display = 'block';
+        document.getElementById('shareButton').style.display = 'block';
+        document.getElementById('renderButton').addEventListener('click', renderHTML);
+        document.getElementById('shareButton').addEventListener('click', shareHTML);
+    }
+</script>
+
+</body>
+</html>
