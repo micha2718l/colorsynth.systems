@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shrimp Compliant AI Chat</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7ede2;
+        background-image: url('https://www.transparenttextures.com/patterns/shattered.png');
+    }
+    .chat-container {
+        background-color: #ffe5d9;
+        border: 2px solid #ffcad4;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        padding: 20px;
+    }
+    #chat-window {
+        background-color: #ffffff;
+        height: 300px;
+        overflow-y: auto;
+        border-radius: 5px;
+        border: 1px solid #ffcad4;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .message {
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .user-message {
+        background-color: #d0f4de;
+        text-align: right;
+    }
+    .ai-message {
+        background-color: #ffd9da;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto chat-container">
+            <div class="py-2 text-center">
+                <h2>🍤 Shrimp Compliant AI Chat 🍤</h2>
+                <p>
+                    Dive into the ocean of conversation with our crustacean sensation. Utilizing trunion-based algorithms and nofer neural networks, this AI is guaranteed to be 100% shrimp compliant.
+                </p>
+            </div>
+            <div id="chat-window"></div>
+            <input type="text" id="chat-input" class="form-control" placeholder="Type your message here..." autocomplete="off">
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(function() {
+    var shrimpResponses = [
+        "Shrimp 🍤",
+        "Shrimp?",
+        "Shrimp!",
+        "Shrimp...",
+        "🍤 Shrimp 🍤",
+        "Shrimp, shrimp",
+        "Shrimp? 🍤",
+        "Shrimp!!!"
+    ];
+
+    $('#chat-input').keypress(function(event) {
+        if (event.which === 13) {
+            var input = $(this).val().trim();
+            if (input !== '') {
+                addMessage('user', input);
+                setTimeout(function() {
+                    var shrimpResponse = shrimpResponses[Math.floor(Math.random() * shrimpResponses.length)];
+                    addMessage('ai', shrimpResponse);
+                }, 500);
+                $(this).val('');
+            }
+        }
+    });
+
+    function addMessage(type, text) {
+        var messageClass = type === 'user' ? 'user-message float-right' : 'ai-message float-left';
+        var messageHtml = '<div class="message ' + messageClass + '">' + text + '</div><div class="clearfix"></div>';
+        $('#chat-window').append(messageHtml).scrollTop($('#chat-window')[0].scrollHeight);
+    }
+});
+</script>
+
+</body>
+</html>
