@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jedi Coders Comic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka+One&family=Roboto+Mono:wght@400;700&display=swap');
+    
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+    
+        .comic-page {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            border: 6px solid #444;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .comic-panel {
+            position: relative;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            overflow: hidden;
+        }
+    
+        .comic-panel:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            z-index: 1;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+    
+        .comic-panel:hover:before {
+            opacity: 1;
+        }
+    
+        .comic-panel img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: filter 0.5s ease;
+        }
+    
+        .comic-panel:hover img {
+            filter: brightness(1.1) contrast(1.1);
+        }
+    
+        .text-block, .speech-bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            border: 4px solid #444;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+    
+        .text-block {
+            font-family: 'Bangers', cursive;
+            font-size: 1.3em;
+            color: #333;
+            width: 65%;
+        }
+    
+        .speech-bubble {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1em;
+            color: #444;
+            transform: rotate(-2deg);
+        }
+    
+        .comic-panel:hover .text-block, .comic-panel:hover .speech-bubble {
+            transform: scale(1.05) rotate(2deg);
+        }
+    
+        /* Alternate text placement */
+        .comic-panel:nth-child(odd) .text-block {
+            left: 10px;
+            bottom: 10px;
+        }
+        .comic-panel:nth-child(odd) .speech-bubble {
+            right: 10px;
+            top: 10px;
+        }
+        .comic-panel:nth-child(even) .text-block {
+            right: 10px;
+            top: 10px;
+        }
+        .comic-panel:nth-child(even) .speech-bubble {
+            left: 10px;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1 -->
+    <div class="comic-page">
+        <div class="comic-panel" id="panel-1a">
+            <img src="1a.png" alt="Panel 1a">
+            <div class="text-block">In the distant reaches of the galaxy, the {{company}} team...</div>
+            <div class="speech-bubble">The galaxy needs our expertise...</div>
+        </div>
+        <div class="comic-panel" id="panel-1b">
+            <img src="1b.png" alt="Panel 1b">
+            <div class="text-block">Their mission: To develop a groundbreaking construction...</div>
+            <div class="speech-bubble">Let's make history...</div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="comic-page">
+        <div class="comic-panel" id="panel-2a">
+            <img src="2a.png" alt="Panel 2a">
+            <div class="text-block">The team dives into action, their coding skills honed...</div>
+            <div class="speech-bubble">Synchronize the algorithms...</div>
+        </div>
+        <div class="comic-panel" id="panel-2b">
+            <img src="2b.png" alt="Panel 2b">
+            <div class="text-block">Hours turn into days as the Jedi coders manipulate...</div>
+            <div class="speech-bubble">This code will be our legacy...</div>
+        </div>
+    </div>
+
+        <!-- Page 3 -->
+        <div class="comic-page">
+            <div class="comic-panel" id="panel-3a">
+                <img src="3a.png" alt="Panel 3a">
+                <div class="text-block">A critical bug appears, challenging the team's progress...</div>
+                <div class="speech-bubble">We must face this challenge head-on!</div>
+            </div>
+            <div class="comic-panel" id="panel-3b">
+                <img src="3b.png" alt="Panel 3b">
+                <div class="text-block">The Jedi developers unite, their skills put to the test...</div>
+                <div class="speech-bubble">Together, we'll overcome this!</div>
+            </div>
+        </div>
+    
+        <!-- Page 4 -->
+        <div class="comic-page">
+            <div class="comic-panel" id="panel-4a">
+                <img src="4a.png" alt="Panel 4a">
+                <div class="text-block">Victory! The bug is defeated, and the team rejoices...</div>
+                <div class="speech-bubble">Our collaboration has triumphed!</div>
+            </div>
+            <div class="comic-panel" id="panel-4b">
+                <img src="4b.png" alt="Panel 4b">
+                <div class="text-block">The final pieces of code fall into place, a moment of triumph...</div>
+                <div class="speech-bubble">We did it! The app is complete!</div>
+            </div>
+        </div>
+    
+        <!-- Page 5 -->
+        <div class="comic-page">
+            <div class="comic-panel" id="panel-5a">
+                <img src="5a.png" alt="Panel 5a">
+                <div class="text-block">The lead developer makes the final commit, a defining moment...</div>
+                <div class="speech-bubble">This is it, the final step!</div>
+            </div>
+            <div class="comic-panel" id="panel-5b">
+                <img src="5b.png" alt="Panel 5b">
+                <div class="text-block">The team waits in anticipation as the software compiles...</div>
+                <div class="speech-bubble">Fingers crossed, everyone...</div>
+            </div>
+        </div>
+    
+        <!-- Page 6 -->
+        <div class="comic-page">
+            <div class="comic-panel" id="panel-6a">
+                <img src="6a.png" alt="Panel 6a">
+                <div class="text-block">Success! The software launches, revolutionizing construction...</div>
+                <div class="speech-bubble">Look at our creation go!</div>
+            </div>
+            <div class="comic-panel" id="panel-6b">
+                <img src="6b.png" alt="Panel 6b">
+                <div class="text-block">Across the galaxy, the software enhances countless projects...</div>
+                <div class="speech-bubble">It's making a real difference!</div>
+            </div>
+        </div>
+    
+        <!-- Page 7 -->
+        <div class="comic-page">
+            <div class="comic-panel" id="panel-7a">
+                <img src="7a.png" alt="Panel 7a">
+                <div class="text-block">A surprise twist: the software becomes sentient, a new ally...</div>
+                <div class="speech-bubble">Thank you, creators, for this gift of life.</div>
+            </div>
+            <div class="comic-panel" id="panel-7b">
+                <img src="7b.png" alt="Panel 7b">
+                <div class="text-block">The Jedi reflect on their journey, proud of their creation...</div>
+                <div class="speech-bubble">We've not just built software; we've created a new friend.</div>
+            </div>
+        </div>
+    </body>
+    </html>    
+</body>
+</html>
